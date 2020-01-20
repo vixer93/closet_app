@@ -9,34 +9,34 @@ class Recommend extends Component {
         <h4>Recommend Item!</h4>
         <div className="recommend__card-list">
           <WearCard
-          img= '../../../../public/fashion.jpg'
-          type="Suit"
-          brand="Machintosh"
-          color="Grey"
+            img= '../../../../public/fashion.jpg'
+            type="Suit"
+            brand="Machintosh"
+            color="Grey"
           />
           <WearCard
-          img= '../../../../public/fashion.jpg'
-          type="Suit"
-          brand="Machintosh"
-          color="Grey"
+            img= '../../../../public/fashion.jpg'
+            type="Suit"
+            brand="Machintosh"
+            color="Grey"
           />
           <WearCard
-          img= '../../../../public/fashion.jpg'
-          type="Suit"
-          brand="Machintosh"
-          color="Grey"
+            img= '../../../../public/fashion.jpg'
+            type="Suit"
+            brand="Machintosh"
+            color="Grey"
           />
           <WearCard
-          img= '../../../../public/fashion.jpg'
-          type="Suit"
-          brand="Machintosh"
-          color="Grey"
+            img= '../../../../public/fashion.jpg'
+            type="Suit"
+            brand="Machintosh"
+            color="Grey"
           />
           <WearCard
-          img= '../../../../public/fashion.jpg'
-          type="Suit"
-          brand="Machintosh"
-          color="Grey"
+            img= '../../../../public/fashion.jpg'
+            type="Suit"
+            brand="Machintosh"
+            color="Grey"
           />
         </div>
       </div>

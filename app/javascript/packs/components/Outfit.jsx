@@ -8,34 +8,34 @@ class Outfit extends Component {
         <h4>What is Today's Outfit?</h4>
         <div className="outfit__card-list">
           <WearCard
-          img= '../../../../public/fashion.jpg'
-          type="Suit"
-          brand="Machintosh"
-          color="Grey"
+            img= '../../../../public/fashion.jpg'
+            type="Suit"
+            brand="Machintosh"
+            color="Grey"
           />
           <WearCard
-          img= '../../../../public/fashion.jpg'
-          type="Suit"
-          brand="Machintosh"
-          color="Grey"
+            img= '../../../../public/fashion.jpg'
+            type="Suit"
+            brand="Machintosh"
+            color="Grey"
           />
           <WearCard
-          img= '../../../../public/fashion.jpg'
-          type="Suit"
-          brand="Machintosh"
-          color="Grey"
+            img= '../../../../public/fashion.jpg'
+            type="Suit"
+            brand="Machintosh"
+            color="Grey"
           />
           <WearCard
-          img= '../../../../public/fashion.jpg'
-          type="Suit"
-          brand="Machintosh"
-          color="Grey"
+            img= '../../../../public/fashion.jpg'
+            type="Suit"
+            brand="Machintosh"
+            color="Grey"
           />
           <WearCard
-          img= '../../../../public/fashion.jpg'
-          type="Suit"
-          brand="Machintosh"
-          color="Grey"
+            img= '../../../../public/fashion.jpg'
+            type="Suit"
+            brand="Machintosh"
+            color="Grey"
           />
         </div>
       </div>
