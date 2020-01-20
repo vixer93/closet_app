@@ -1,14 +1,43 @@
 .closet {
   margin: 10px;
+  &__card-list {
+    display: flex;
+    overflow-x: scroll;
+  }
+  h4 {
+    margin: 0 auto 0 10px;
+    padding-top: 10px;
+  }
 }
+
+.outfit {
+  margin: 10px;
+  &__card-list {
+    display: flex;
+    overflow-x: scroll;
+  }
+  h4 {
+    margin: 0 auto 0 10px;
+    padding-top: 10px;
+  }
+}
+
+.recommend {
+  margin: 10px;
+  &__card-list {
+    display: flex;
+    overflow-x: scroll;
+  }
+  h4 {
+    margin: 0 auto 0 10px;
+    padding-top: 10px;
+  }
+}
+
 .card.wear-card {
   margin: 10px;
 }
 
-.closet h4 {
-  margin: 0 auto 0 10px;
-  padding-top: 10px;
-}
 .card {
   height: 350px;
   width: 400px;
