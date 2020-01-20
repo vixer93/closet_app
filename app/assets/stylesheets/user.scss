@@ -1,0 +1,12 @@
+.user-form {
+  color: white;
+}
+
+input[type="radio"]:not(:checked) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.gender-label {
+  margin-left: 15px;
+}
