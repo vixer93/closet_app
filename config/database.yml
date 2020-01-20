@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: closet_app_production
-  username: closet_app
-  password: <%= ENV['CLOSET_APP_DATABASE_PASSWORD'] %>
+  database: postgresql
+  encoding: unicode
+  pool: 5
