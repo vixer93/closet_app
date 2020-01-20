@@ -162,6 +162,8 @@ GEM
       execjs
       railties (>= 3.2)
       tilt
+    react-rails-img (0.1.6)
+      react-rails
     regexp_parser (1.6.0)
     ruby_dep (1.5.0)
     rubyzip (2.0.0)
@@ -235,6 +237,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.4, >= 5.2.4.1)
   react-rails
+  react-rails-img
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
