@@ -33,7 +33,7 @@ class WearRegistModal extends Component {
 
     this.setState({
       image: image_name,
-      brand: image_url,
+      image_url: image_url,
       image_name: image_name,
     })
   }
