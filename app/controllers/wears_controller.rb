@@ -1,5 +1,7 @@
 class WearsController < ApplicationController
   def index
+    @wears = Wear.all
+    # render json: @wears
   end
 
   def create

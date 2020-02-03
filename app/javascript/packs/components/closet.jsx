@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import WearCard from './wear_card'
 import WearRegistModal from './wear_regist_modal'
+import axios from 'axios';
 
 class Closet extends Component {
   constructor(props){
@@ -9,6 +10,10 @@ class Closet extends Component {
       isClick: false,
     }
     this.handleClickButton = this.handleClickButton.bind(this)
+  }
+
+  componentDidMount() {
+    
   }
 
   handleClickButton(){
@@ -22,7 +27,9 @@ class Closet extends Component {
   render() {
     var modal;
     if (this.state.isClick){
-      modal = <WearRegistModal closeModal={()=>{this.closeModal();}}/>
+      modal = <WearRegistModal
+                closeModal={()=>{this.closeModal();}}
+              />
     }
 
     return (

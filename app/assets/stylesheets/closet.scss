@@ -43,11 +43,23 @@
     .selected-img {
       height: 50%;
       width: 100%;
-      background-color: black;
+      background-color: white;
+      border-bottom: 2px solid #bdbdbd;
+      img {
+        width: 296px;
+        height: 188px;
+      }
     }
     .input-wear-info {
       width: 80%;
       margin: 15px auto 0px auto;
+    }
+    .input-field.col.s6 {
+      margin-top: 20px;
+      margin-bottom: 5px;
+    }
+    .send-btn {
+      width: 100%;
     }
   }
 }
