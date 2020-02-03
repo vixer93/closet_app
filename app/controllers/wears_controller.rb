@@ -6,7 +6,7 @@ class WearsController < ApplicationController
 
   def create
     @wear = Wear.new(wear_params)
-    @wear.save ? (render :json) : (render :index)
+    @wear.save ? (render json: @wear) : (redirect_to root_path)
   end
 
   private
