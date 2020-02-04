@@ -5,4 +5,5 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
   resources :wears, only: [:index, :create]
+  get '/recommend' => 'home#recommend'
 end

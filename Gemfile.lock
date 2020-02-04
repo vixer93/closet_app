@@ -266,6 +266,7 @@ DEPENDENCIES
   materialize-sass
   mini_magick
   mysql2 (>= 0.4.4, < 0.6.0)
+  nokogiri
   pg
   pry-rails
   puma (~> 3.11)
