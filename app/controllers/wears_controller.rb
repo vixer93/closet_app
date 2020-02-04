@@ -13,4 +13,5 @@ class WearsController < ApplicationController
   def wear_params
     params.require(:wear).permit(:image, :color, :type, :brand)
   end
+
 end
