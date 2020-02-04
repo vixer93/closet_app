@@ -7,13 +7,17 @@ class Closet extends Component {
   constructor(props){
     super(props);
     this.state = {
+      wears: [],
       isClick: false,
     }
     this.handleClickButton = this.handleClickButton.bind(this)
   }
 
   componentDidMount() {
-    
+    axios.get('/wears')
+    .then(res=>{
+      this.setState({wears: res.data})
+    })
   }
 
   handleClickButton(){
@@ -26,10 +30,24 @@ class Closet extends Component {
 
   render() {
     var modal;
+    var wear_cards = [];
+
     if (this.state.isClick){
       modal = <WearRegistModal
                 closeModal={()=>{this.closeModal();}}
               />
+    }
+
+    for(var i=0; i<this.state.wears.length; i++){
+      var tmp = this.state.wears[i].image.url.split("/");
+      var image_name = tmp[tmp.length-1];
+      wear_cards.push(<WearCard
+                        key={this.state.wears[i].id}
+                        img={"../image/"+this.state.wears[i].id+"/"+image_name}
+                        type=""
+                        brand={this.state.wears[i].brand}
+                        color=""
+                      />)
     }
 
     return (
@@ -39,36 +57,7 @@ class Closet extends Component {
           <i className="material-icons">add</i>
         </button>
         <div className="closet__card-list">
-          <WearCard
-            img= '../../../../public/fashion.jpg'
-            type="Suit"
-            brand="Machintosh"
-            color="Grey"
-          />
-          <WearCard
-            img= '../../../../public/fashion.jpg'
-            type="Suit"
-            brand="Machintosh"
-            color="Grey"
-          />
-          <WearCard
-            img= '../../../../public/fashion.jpg'
-            type="Suit"
-            brand="Machintosh"
-            color="Grey"
-          />
-          <WearCard
-            img= '../../../../public/fashion.jpg'
-            type="Suit"
-            brand="Machintosh"
-            color="Grey"
-          />
-          <WearCard
-            img= '../../../../public/fashion.jpg'
-            type="Suit"
-            brand="Machintosh"
-            color="Grey"
-          />
+          {wear_cards}
         </div>
         {modal}
       </div>
