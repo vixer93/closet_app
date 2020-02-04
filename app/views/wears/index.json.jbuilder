@@ -1,8 +1,7 @@
-json.set! :wear do
-  json.array! @wears do |wear|
-    # json.extract wear, :id, :image, :color, :type, :brand
-    # json.image_name wear.image
-    json.id wear.id
-    json.brand wear.brand
-  end
+json.array! @wears do |wear|
+  json.id    wear.id
+  json.image wear.image.url
+  json.color wear.color
+  json.type  wear.type
+  json.brand wear.brand
 end
