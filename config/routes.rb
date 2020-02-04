@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   end
   resources :wears, only: [:index, :create], defaults: {format: 'json'}
   get '/recommend' => 'home#recommend'
+  get '/outfit' => "home#outfit"
 end
