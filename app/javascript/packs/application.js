@@ -17,7 +17,6 @@
 
 import App from './components/app'
 import WebpackerReact from 'webpacker-react'
-const images = require.context('../images', true)
 
 WebpackerReact.setup({
   App

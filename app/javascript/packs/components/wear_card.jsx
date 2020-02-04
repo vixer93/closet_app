@@ -7,7 +7,7 @@ class WearCard extends Component {
       <div className="card wear-card">
         <div className="card__image">
           <img src={this.props.img}/>
-          <span className="card-title">Card Title</span>
+          <span className="card-title"></span>
         </div>
         <div className="card__content">
           <ul>

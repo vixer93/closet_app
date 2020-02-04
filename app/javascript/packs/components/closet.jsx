@@ -39,11 +39,9 @@ class Closet extends Component {
     }
 
     for(var i=0; i<this.state.wears.length; i++){
-      var tmp = this.state.wears[i].image.url.split("/");
-      var image_name = tmp[tmp.length-1];
       wear_cards.push(<WearCard
                         key={this.state.wears[i].id}
-                        img={"../image/"+this.state.wears[i].id+"/"+image_name}
+                        img={this.state.wears[i].image}
                         type=""
                         brand={this.state.wears[i].brand}
                         color=""
