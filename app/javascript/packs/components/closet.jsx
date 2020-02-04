@@ -40,7 +40,7 @@ class Closet extends Component {
         </button>
         <div className="closet__card-list">
           <WearCard
-            img= '../../../../public/fashion.jpg'
+            img=""
             type="Suit"
             brand="Machintosh"
             color="Grey"
