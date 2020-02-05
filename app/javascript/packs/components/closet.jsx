@@ -11,9 +11,14 @@ class Closet extends Component {
       isClick: false,
     }
     this.handleClickButton = this.handleClickButton.bind(this)
+    this.getWearIndex      = this.getWearIndex.bind(this)
   }
 
   componentDidMount() {
+    this.getWearIndex();
+  }
+
+  getWearIndex(){
     axios.get('/wears')
     .then(res=>{
       this.setState({wears: res.data})
@@ -28,6 +33,10 @@ class Closet extends Component {
     this.setState({isClick: false});
   }
 
+  addWearInfo(){
+    this.getWearIndex();
+  }
+
   render() {
     var modal;
     var wear_cards = [];
@@ -35,6 +44,7 @@ class Closet extends Component {
     if (this.state.isClick){
       modal = <WearRegistModal
                 closeModal={()=>{this.closeModal();}}
+                addWearInfo={()=>{this.addWearInfo();}}
               />
     }
 
