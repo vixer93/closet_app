@@ -1,6 +1,6 @@
 class WearsController < ApplicationController
   def index
-    @wears = Wear.all
+    @wears = Wear.all.order("created_at DESC")
   end
 
   def create

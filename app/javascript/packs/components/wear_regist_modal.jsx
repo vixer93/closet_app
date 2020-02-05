@@ -50,6 +50,7 @@ class WearRegistModal extends Component {
                {headers: {'content-type': 'multipart/form-data',}}
               )
     .then(res=>{
+      this.props.addWearInfo();
       this.props.closeModal();
     },error=>{
       console.info(error);
