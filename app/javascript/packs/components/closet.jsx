@@ -52,7 +52,7 @@ class Closet extends Component {
       wear_cards.push(<WearCard
                         key={this.state.wears[i].id}
                         img={this.state.wears[i].image}
-                        type=""
+                        type={this.state.wears[i].type}
                         brand={this.state.wears[i].brand}
                         color=""
                       />)
