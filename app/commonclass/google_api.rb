@@ -25,6 +25,10 @@ class GoogleCloudVision
         features: [{
           type: "LABEL_DETECTION",
           maxResults: 10
+        },
+        {
+          type: "IMAGE_PROPERTIES",
+          maxResults: 10
         }]
       }]
     }.to_json
@@ -33,6 +37,8 @@ class GoogleCloudVision
   def result_parse(response)
     result = JSON.parse(response)['responses'].first
     label = result['labelAnnotations'].first
+    color = result['imagePropertiesAnnotation'].first[1]['colors'].first['color']
+    img_info = {label: label, color: color}
   end
 
 end
