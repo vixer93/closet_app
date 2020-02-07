@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import WearCard from './wear_card'
 import WearRegistModal from './wear_regist_modal'
+import WearUpdateModal from './wear_update_modal'
 import axios from 'axios';
 
 class Closet extends Component {
@@ -38,8 +39,8 @@ class Closet extends Component {
   }
 
   render() {
-    var modal;
-    var wear_cards = [];
+    let regist_modal;
+    let wear_cards = [];
 
     if (this.state.isClick){
       modal = <WearRegistModal
@@ -54,7 +55,7 @@ class Closet extends Component {
                         img={this.state.wears[i].image}
                         type=""
                         brand={this.state.wears[i].brand}
-                        color=""
+                        color={this.state.wears[i].color}
                       />)
     }
 
@@ -67,7 +68,7 @@ class Closet extends Component {
         <div className="closet__card-list">
           {wear_cards}
         </div>
-        {modal}
+        {regist_modal}
       </div>
       );
   }

@@ -3,6 +3,9 @@ import React, { Component, PropTypes } from 'react';
 class WearCard extends Component {
 
   render() {
+    let background_color = {
+      background: this.props.color,
+    }
     return (
       <div className="card wear-card">
         <div className="card__image">
@@ -12,9 +15,13 @@ class WearCard extends Component {
           <ul>
             <li>Type:{this.props.type}</li>
             <li>brand:{this.props.brand}</li>
-            <li>color:{this.props.color}</li>
+            <li className="wear-color">
+              <p>color:</p>
+              <div className="wear-color__box" style={background_color}></div>
+            </li>
           </ul>
         </div>
+        <WearUpdateModal/>
       </div>
     );
   }

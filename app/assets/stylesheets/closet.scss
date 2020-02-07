@@ -110,6 +110,14 @@
   .card__content {
     background-color: #424242;
     color: white;
+    .wear-color {
+      display: flex;
+      &__box {
+        height: 20px;
+        width: 100px;
+        margin-left: 5px;
+      }
+    }
   }
 }
 
@@ -133,4 +141,22 @@
 }
 li {
   margin-bottom: 5px;
+}
+
+.wear-update-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(45,45,45, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .update-area {
+    position: fixed;
+    height: 500px;
+    width: 600px;
+    background-color: white;
+  }
 }
