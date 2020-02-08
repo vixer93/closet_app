@@ -99,8 +99,8 @@
 
 .card.wear-card {
   margin: 10px;
-  cursor: pointer;
   .card__image {
+    cursor: pointer;
     width: 400px;
     height: 245px;
     text-align: center;
@@ -113,6 +113,8 @@
   .card__content {
     background-color: #424242;
     color: white;
+    display: flex;
+    justify-content: space-between;
     .wear-color {
       display: flex;
       &__box {
@@ -120,6 +122,12 @@
         width: 100px;
         margin-left: 5px;
       }
+    }
+    .wear-delete-btn {
+      cursor: pointer;
+      color: white;
+      margin: auto 0;
+      font-size: 35px;
     }
   }
 }
