@@ -1,4 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import axios from 'axios';
+
+var createObjectURL = (window.URL || window.webkitURL).createObjectURL || window.createObjectURL;
 
 class WearUpdateModal extends Component {
   constructor(props) {
@@ -11,12 +14,16 @@ class WearUpdateModal extends Component {
       color_green: '',
       color_blue: '',
     }
+    this.updateWearData             = this.updateWearData.bind(this)
     this.handleChangeWearType       = this.handleChangeWearType.bind(this)
     this.handleChangeWearBrand      = this.handleChangeWearBrand.bind(this)
     this.handleChangeWearColorRed   = this.handleChangeWearColorRed.bind(this)
     this.handleChangeWearColorGreen = this.handleChangeWearColorGreen.bind(this)
     this.handleChangeWearColorBlue  = this.handleChangeWearColorBlue.bind(this)
     this.calculateColor             = this.calculateColor.bind(this)
+
+    const csrfToken = document.querySelector('[name=csrf-token]').content
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
   }
 
   componentDidMount(){
@@ -42,6 +49,26 @@ class WearUpdateModal extends Component {
         color_blue: '',
       })
     }
+  }
+
+  updateWearData(event){
+    event.preventDefault();
+
+    let formData = new FormData();
+    formData.append('wear[wtype]', this.state.type);
+    formData.append('wear[brand]', this.state.brand);
+    formData.append('wear[color]', this.state.color);
+
+    axios.put(`/wears/${this.props.id}`,
+               formData,
+               {headers: {'content-type': 'multipart/form-data',}}
+              )
+    .then(res=>{
+      this.props.closeUpdateModal();
+      this.props.addWearInfo();
+    },error=>{
+      console.info(error);
+    });
   }
 
   handleChangeWearType(event){
@@ -91,7 +118,7 @@ class WearUpdateModal extends Component {
 
     this.setState({
       color: `#${colors_hex[0]+colors_hex[1]+colors_hex[2]}`,
-    },()=>{console.log(this.state.color)})
+    },()=>{})
   }
 
   render() {
@@ -131,7 +158,7 @@ class WearUpdateModal extends Component {
               </div>
               <div className="wear-color__box" style={background_color}></div>
             </div>
-            <button className="send-btn btn waves-effect waves-light red lighten-2" type="submit" name="action">Update
+            <button onClick={this.updateWearData} className="send-btn btn waves-effect waves-light red lighten-2" type="submit" name="action">Update
             </button>
           </form>
         </div>

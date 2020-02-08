@@ -57,6 +57,7 @@ class Closet extends Component {
                         type={this.state.wears[i].type}
                         brand={this.state.wears[i].brand}
                         color={this.state.wears[i].color}
+                        addWearInfo={()=>{this.addWearInfo();}}
                       />)
     }
 

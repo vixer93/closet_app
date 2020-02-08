@@ -17,9 +17,17 @@ require_relative './../commonclass/google_api'
     @wear.save ? (render json: @wear) : (redirect_to root_path)
   end
 
+  def update
+    @wear = Wear.find(params[:id])
+    if @wear.update(wear_params)
+    else
+      redirect_to root_path
+    end
+  end
+
   private
   def wear_params
-    params.require(:wear).permit(:image, :color, :brand)
+    params.require(:wear).permit(:image, :color, :brand, :wtype)
   end
 
 end

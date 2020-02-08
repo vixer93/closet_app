@@ -29,11 +29,13 @@ class WearCard extends Component {
     if (this.state.isClick){
       update_modal = <WearUpdateModal
                       key={this.props.id}
+                      id={this.props.id}
                       closeUpdateModal={()=>{this.closeUpdateModal();}}
                       img={this.props.img}
                       type={this.props.type}
                       brand={this.props.brand}
                       color={this.props.color}
+                      addWearInfo={()=>{this.props.addWearInfo();}}
                      />
     }
 
