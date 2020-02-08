@@ -43,7 +43,7 @@ class Closet extends Component {
     let wear_cards = [];
 
     if (this.state.isClick){
-      modal = <WearRegistModal
+      regist_modal = <WearRegistModal
                 closeModal={()=>{this.closeModal();}}
                 addWearInfo={()=>{this.addWearInfo();}}
               />
@@ -52,6 +52,7 @@ class Closet extends Component {
     for(var i=0; i<this.state.wears.length; i++){
       wear_cards.push(<WearCard
                         key={this.state.wears[i].id}
+                        id={this.state.wears[i].id}
                         img={this.state.wears[i].image}
                         type={this.state.wears[i].type}
                         brand={this.state.wears[i].brand}
