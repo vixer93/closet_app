@@ -13,7 +13,7 @@ class GoogleCloudVision
     http_client = HTTPClient.new
     content = Base64.strict_encode64(File.new(@file_path, 'rb').read)
     response = http_client.post_content(@endpoint_uri, request_json(content), 'Content-Type' => 'application/json')
-    result_parse(response)
+    JSON.parse(response)['responses'].first
   end
 
   def request_json(content)
@@ -24,21 +24,13 @@ class GoogleCloudVision
         },
         features: [{
           type: "LABEL_DETECTION",
-          maxResults: 10
+          maxResults: 7
         },
         {
           type: "IMAGE_PROPERTIES",
-          maxResults: 10
+          maxResults: 3
         }]
       }]
     }.to_json
   end
-
-  def result_parse(response)
-    result = JSON.parse(response)['responses'].first
-    label = result['labelAnnotations'].first
-    color = result['imagePropertiesAnnotation'].first[1]['colors'].first['color']
-    img_info = {label: label, color: color}
-  end
-
 end
