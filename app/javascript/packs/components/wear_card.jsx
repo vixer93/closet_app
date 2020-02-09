@@ -59,10 +59,10 @@ class WearCard extends Component {
           </div>
           <div className="card__content">
             <ul>
-              <li>Type:{this.props.type}</li>
-              <li>Brand:{this.props.brand}</li>
+              <li>Type: &nbsp;&nbsp;{this.props.type}</li>
+              <li>Brand: {this.props.brand}</li>
               <li className="wear-color">
-                <p>Color:</p>
+                <p>Color:&nbsp;</p>
                 <div className="wear-color__box" style={background_color}></div>
               </li>
             </ul>
