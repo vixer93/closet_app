@@ -4,7 +4,7 @@ class WearsController < ApplicationController
   include WearsHelper
 
   def index
-    @wears = Wear.all.order("created_at DESC")
+    @wears = Wear.where(user_id: current_user.id).order("created_at DESC")
   end
 
   def create
