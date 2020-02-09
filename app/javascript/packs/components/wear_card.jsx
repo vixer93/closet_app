@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import WearUpdateModal from './wear_update_modal'
+import WearUpdateModal from './wear_update_modal';
+import axios from 'axios';
 
 class WearCard extends Component {
   constructor(props) {
@@ -9,6 +10,10 @@ class WearCard extends Component {
     }
     this.handleClickImage = this.handleClickImage.bind(this);
     this.closeUpdateModal = this.closeUpdateModal.bind(this);
+    this.deleteWearData   = this.deleteWearData.bind(this);
+
+    const csrfToken = document.querySelector('[name=csrf-token]').content
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
   }
 
   handleClickImage(){
@@ -18,6 +23,13 @@ class WearCard extends Component {
   closeUpdateModal(){
     var value = false;
     this.setState({isClick: value});
+  }
+
+  deleteWearData(){
+    axios.delete(`wears/${this.props.id}`)
+    .then(res=>{
+      this.props.addWearInfo();
+    },error=>{})
   }
 
   render() {
@@ -41,8 +53,8 @@ class WearCard extends Component {
 
     return (
       <React.Fragment>
-        <div className="card wear-card" onClick={this.handleClickImage}>
-          <div className="card__image">
+        <div className="card wear-card">
+          <div className="card__image" onClick={this.handleClickImage}>
             <img src={this.props.img}/>
           </div>
           <div className="card__content">
@@ -54,6 +66,7 @@ class WearCard extends Component {
                 <div className="wear-color__box" style={background_color}></div>
               </li>
             </ul>
+            <i onClick={this.deleteWearData} className="Large material-icons wear-delete-btn">delete</i>
           </div>
         </div>
         {update_modal}

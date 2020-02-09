@@ -25,6 +25,15 @@ require_relative './../commonclass/google_api'
     end
   end
 
+  def destroy
+    @wear = Wear.find(params[:id])
+    if @wear.destroy
+      Dir.rmdir("/Users/usudashin/Projects/closet_app/public/uploads/wear/image/#{params[:id]}")
+    else
+      redirect_to root_path
+    end
+  end
+
   private
   def wear_params
     params.require(:wear).permit(:image, :color, :brand, :wtype)
