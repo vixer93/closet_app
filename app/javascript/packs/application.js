@@ -22,4 +22,4 @@ WebpackerReact.setup({
   App
 })
 
-console.log('Hello World from Webpacker')
+

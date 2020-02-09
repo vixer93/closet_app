@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
-  resources :wears, only: [:index, :create]
+  resources :wears, only: [:index, :create, :update, :destroy], defaults: {format: 'json'}
+  get '/recommend' => 'home#recommend'
+  get '/outfit' => "home#outfit"
 end
