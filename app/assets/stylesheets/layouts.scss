@@ -1,7 +1,28 @@
+@font-face {
+    font-family: 'DIN';
+    src: url('フォント名.eot');
+}
+
 body {
   background: image-url('blouse.jpg');
   background-attachment: fixed;
   background-size: cover;
   width: 100vw;
   margin: 0;
+}
+header{
+  height: 64px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  backdrop-filter:contrast(4) blur(20px);
+  z-index: 99;
+  nav {
+    font-family: 'Josefin Sans', sans-serif;
+    background: rgba(0,0,0,0.4);
+    box-shadow: none;
+    .brand-logo {
+      margin-left: 20px;
+    }
+  }
 }
