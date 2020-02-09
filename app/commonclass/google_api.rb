@@ -24,11 +24,11 @@ class GoogleCloudVision
         },
         features: [{
           type: "LABEL_DETECTION",
-          maxResults: 10
+          maxResults: 7
         },
         {
           type: "IMAGE_PROPERTIES",
-          maxResults: 10
+          maxResults: 3
         }]
       }]
     }.to_json

@@ -37,7 +37,7 @@ class WearsController < ApplicationController
 
   private
   def wear_params
-    params.require(:wear).permit(:image, :color, :brand, :wtype)
+    params.require(:wear).permit(:image, :color, :brand, :wtype).merge(user_id: current_user.id)
   end
 
   def response_analysis(response)
