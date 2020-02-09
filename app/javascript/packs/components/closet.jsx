@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import WearCard from './wear_card'
 import WearRegistModal from './wear_regist_modal'
+import WearUpdateModal from './wear_update_modal'
 import axios from 'axios';
 
 class Closet extends Component {
@@ -11,9 +12,14 @@ class Closet extends Component {
       isClick: false,
     }
     this.handleClickButton = this.handleClickButton.bind(this)
+    this.getWearIndex      = this.getWearIndex.bind(this)
   }
 
   componentDidMount() {
+    this.getWearIndex();
+  }
+
+  getWearIndex(){
     axios.get('/wears')
     .then(res=>{
       this.setState({wears: res.data})
@@ -28,23 +34,30 @@ class Closet extends Component {
     this.setState({isClick: false});
   }
 
+  addWearInfo(){
+    this.getWearIndex();
+  }
+
   render() {
-    var modal;
-    var wear_cards = [];
+    let regist_modal;
+    let wear_cards = [];
 
     if (this.state.isClick){
-      modal = <WearRegistModal
+      regist_modal = <WearRegistModal
                 closeModal={()=>{this.closeModal();}}
+                addWearInfo={()=>{this.addWearInfo();}}
               />
     }
 
     for(var i=0; i<this.state.wears.length; i++){
       wear_cards.push(<WearCard
                         key={this.state.wears[i].id}
+                        id={this.state.wears[i].id}
                         img={this.state.wears[i].image}
-                        type=""
+                        type={this.state.wears[i].type}
                         brand={this.state.wears[i].brand}
-                        color=""
+                        color={this.state.wears[i].color}
+                        addWearInfo={()=>{this.addWearInfo();}}
                       />)
     }
 
@@ -57,7 +70,7 @@ class Closet extends Component {
         <div className="closet__card-list">
           {wear_cards}
         </div>
-        {modal}
+        {regist_modal}
       </div>
       );
   }
