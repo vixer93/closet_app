@@ -21,6 +21,7 @@ class WearUpdateModal extends Component {
     this.handleChangeWearColorGreen = this.handleChangeWearColorGreen.bind(this)
     this.handleChangeWearColorBlue  = this.handleChangeWearColorBlue.bind(this)
     this.calculateColor             = this.calculateColor.bind(this)
+    this.getWearAdvise              = this.getWearAdvise.bind(this)
 
     const csrfToken = document.querySelector('[name=csrf-token]').content
     axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
@@ -66,6 +67,7 @@ class WearUpdateModal extends Component {
     .then(res=>{
       this.props.closeUpdateModal();
       this.props.addWearInfo();
+      this.props.handleFlashMessage('Update Successful');
     },error=>{
       console.info(error);
     });
@@ -100,6 +102,15 @@ class WearUpdateModal extends Component {
     this.setState({
       color_blue: Number(event.target.value),
     },()=>{this.calculateColor();})
+  }
+
+  getWearAdvise(){
+    axios.get(`/wears/${this.props.id}/advise`)
+    .then(res=>{
+      this.props.handleWearAdvise(res.data);
+    },error=>{
+      console.info(error);
+    });
   }
 
   calculateColor(){
@@ -156,7 +167,10 @@ class WearUpdateModal extends Component {
                 <input onChange={this.handleChangeWearColorBlue} id="update-color-blue" type="text" className="validate" defaultValue={this.state.color_blue} />
                 <label className="active" htmlFor="update-color-blue">Color Blue</label>
               </div>
-              <div className="wear-color__box" style={background_color}></div>
+              <div onClick={this.getWearAdvise} className="how-style">
+                <p>How to Style?</p>
+                <div className="wear-color__box" style={background_color}></div>
+              </div>
             </div>
             <button onClick={this.updateWearData} className="send-btn btn waves-effect waves-light red lighten-2" type="submit" name="action">Update
             </button>
