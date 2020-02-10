@@ -26,9 +26,14 @@ class HomeController < ApplicationController
 
   def scraping_buyma(word, gender)
     gender_key = gender=="male" ? "-C1002F1" : "-F1"
-    word.gsub!(/[[:space:]]/, '%20')
 
-    url = "https://www.buyma.com/r/#{gender_key}/#{word}/"
+    if word.nil?
+      url = "https://www.buyma.com/r/#{gender_key}/"
+    else
+      word.gsub!(/[[:space:]]/, '%20')
+      url = "https://www.buyma.com/r/#{gender_key}/#{word}/"
+    end
+
     charset = nil
     html = open(url) do |f|
       charset = f.charset
