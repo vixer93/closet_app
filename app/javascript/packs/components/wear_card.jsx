@@ -29,6 +29,7 @@ class WearCard extends Component {
     axios.delete(`wears/${this.props.id}`)
     .then(res=>{
       this.props.addWearInfo();
+      this.props.handleFlashMessage("Delete Successful");
     },error=>{})
   }
 
@@ -42,12 +43,13 @@ class WearCard extends Component {
       update_modal = <WearUpdateModal
                       key={this.props.id}
                       id={this.props.id}
-                      closeUpdateModal={()=>{this.closeUpdateModal();}}
                       img={this.props.img}
                       type={this.props.type}
                       brand={this.props.brand}
                       color={this.props.color}
+                      closeUpdateModal={()=>{this.closeUpdateModal();}}
                       addWearInfo={()=>{this.props.addWearInfo();}}
+                      handleFlashMessage={(message)=>{this.props.handleFlashMessage(message);}}
                      />
     }
 

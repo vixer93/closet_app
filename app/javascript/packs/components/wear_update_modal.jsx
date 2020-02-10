@@ -66,6 +66,7 @@ class WearUpdateModal extends Component {
     .then(res=>{
       this.props.closeUpdateModal();
       this.props.addWearInfo();
+      this.props.handleFlashMessage('Update Successful');
     },error=>{
       console.info(error);
     });

@@ -52,6 +52,7 @@ class WearRegistModal extends Component {
     .then(res=>{
       this.props.addWearInfo();
       this.props.closeModal();
+      this.props.handleFlashMessage('Create Successful');
     },error=>{
       console.info(error);
     });
