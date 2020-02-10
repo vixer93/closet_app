@@ -31,6 +31,11 @@
   }
 }
 
+@keyframes lightbulb {
+  0% {color: black;}
+  100% {color: #ffee58}
+}
+
 .closet {
   padding-top: 64px;
   margin: 0 10px 10px 10px;
@@ -272,10 +277,21 @@ li {
         .color-num {
           width: 20%;
         }
-        .wear-color__box {
-          height: 20px;
-          width: 100px;
-          margin: auto 0;
+        .how-style{
+          cursor: pointer;
+          width: 20%;
+          position: relative;
+          .wear-color__box {
+            height: 20px;
+            width: 100px;
+            margin: auto 0;
+            position: absolute;
+            bottom: 30%;
+          }
+          p {
+            position: absolute;
+            bottom: 60%;
+          }
         }
       }
     }
@@ -293,6 +309,7 @@ li {
   animation: fadeout 0.5s linear 5s 1, slide 1s 1;
   animation-fill-mode: forwards;
   background-color: black;
+  z-index: 103;
   .notifications {
     display: flex;
     align-items: center;
@@ -309,6 +326,39 @@ li {
       margin-left: 15px;
       padding-top: 5px;
       font-size: 1.5em;
+    }
+  }
+}
+
+.wear-advise {
+  height: 150px;
+  width: 300px;
+  position: fixed;
+  bottom: 160px;
+  left: 40px;
+  border-radius: 5px;
+  padding: 10px;
+  animation: fadeout 0.5s linear 10s 1, slide 1s 1;
+  animation-fill-mode: forwards;
+  background-color: black;
+  z-index: 103;
+  .notifications {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    .notif-icon {
+      color: white;
+      font-size: 30px;
+      animation: lightbulb linear 0.5s 6;
+      animation-fill-mode: forwards;
+      transform-origin: center top 0;
+    }
+    p {
+      color: white;
+      margin-left: 15px;
+      padding-top: 5px;
+      font-size: 1.2em;
     }
   }
 }

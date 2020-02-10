@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import WearCard from './wear_card'
-import WearRegistModal from './wear_regist_modal'
-import WearUpdateModal from './wear_update_modal'
-import FlashMessage from './flash_message'
+import WearCard from './wear_card';
+import WearRegistModal from './wear_regist_modal';
+import WearUpdateModal from './wear_update_modal';
+import WearAdvise from './wear_advise';
+import FlashMessage from './flash_message';
 import axios from 'axios';
 
 class Closet extends Component {
@@ -11,11 +12,14 @@ class Closet extends Component {
     this.state = {
       wears: [],
       isClick: false,
+      hasAdvise: false,
+      Advise: "",
       hasFlash: false,
-      FlashMessage: "message",
+      FlashMessage: "",
     }
     this.handleClickButton  = this.handleClickButton.bind(this)
     this.getWearIndex       = this.getWearIndex.bind(this)
+    this.handleWearAdvise   = this.handleWearAdvise.bind(this)
     this.handleFlashMessage = this.handleFlashMessage.bind(this)
   }
 
@@ -42,6 +46,17 @@ class Closet extends Component {
     this.getWearIndex();
   }
 
+  handleWearAdvise(message){
+    if (this.state.hasAdvise) {
+      this.setState({hasAdvise: false})
+    }
+
+    this.setState({
+      hasAdvise: true,
+      Advise: message,
+    });
+  }
+
   handleFlashMessage(message){
     if (this.state.hasFlash) {
       this.setState({hasFlash: false})
@@ -55,16 +70,23 @@ class Closet extends Component {
 
   render() {
     let regist_modal;
+    let wear_advise;
     let flash_message;
     let wear_cards = [];
 
-
     if (this.state.isClick){
       regist_modal = <WearRegistModal
-                closeModal={()=>{this.closeModal();}}
-                addWearInfo={()=>{this.addWearInfo();}}
-                handleFlashMessage={(message)=>{this.handleFlashMessage(message);}}
-              />
+                      closeModal={()=>{this.closeModal();}}
+                      addWearInfo={()=>{this.addWearInfo();}}
+                      handleFlashMessage={(message)=>{this.handleFlashMessage(message);}}
+                     />
+    }
+
+    if (this.state.hasAdvise){
+      wear_advise = <WearAdvise
+                      message={this.state.Advise}
+                    />
+      setTimeout(this.setState(), 10000, {hasAdvise: false})
     }
 
     if (this.state.hasFlash){
@@ -84,6 +106,7 @@ class Closet extends Component {
                         color={this.state.wears[i].color}
                         addWearInfo={()=>{this.addWearInfo();}}
                         handleFlashMessage={(message)=>{this.handleFlashMessage(message);}}
+                        handleWearAdvise={(message)=>{this.handleWearAdvise(message);}}
                       />)
     }
 
@@ -102,6 +125,7 @@ class Closet extends Component {
           {wear_cards}
         </div>
         {regist_modal}
+        {wear_advise}
         {flash_message}
       </div>
       );
