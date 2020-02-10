@@ -50,6 +50,7 @@ class WearCard extends Component {
                       closeUpdateModal={()=>{this.closeUpdateModal();}}
                       addWearInfo={()=>{this.props.addWearInfo();}}
                       handleFlashMessage={(message)=>{this.props.handleFlashMessage(message);}}
+                      handleWearAdvise={(message)=>{this.props.handleWearAdvise(message);}}
                      />
     }
 
