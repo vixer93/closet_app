@@ -26,6 +26,9 @@ class WearsController < ApplicationController
                                  result[:color]['green'],
                                  result[:color]['blue']
                                 )
+      @wear.hue = wear_hue(result[:color]['red'],
+                           result[:color]['green'],
+                           result[:color]['blue'])
     end
     @wear.save ? (render json: @wear) : (redirect_to root_path)
   end
@@ -107,6 +110,23 @@ class WearsController < ApplicationController
       return "比較的落ち着いた色です。\nどの洋服とも相性が良いです。
               \n原色系の小物を挟んだり、ダーク系でまとめてモードな雰囲気も楽しめます！"
     end
+  end
+
+  def wear_hue(red, green, blue)
+    max_color_val = [red, green, blue].uniq.count == 1 ? 0 : [red, green, blue].max
+    min_color_val = [red, green, blue].min
+
+    case max_color_val
+    when red
+      hue = (60 * ((green - blue) / (red - min_color_val).to_f)).round(2)
+    when green
+      hue = (60 * ((blue - red) / (green - min_color_val).to_f) + 120).round(2)
+    when blue
+      hue = (60 * ((red - green) / (blue - min_color_val).to_f) + 240).round(2)
+    end
+
+    hue += 360 if hue < 0
+    hue
   end
 
 end
