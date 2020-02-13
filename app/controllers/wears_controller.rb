@@ -85,14 +85,46 @@ class WearsController < ApplicationController
   end
 
   def choice_advise(wear)
-    if wear.chroma >= 0.40
-      return "色鮮やかな洋服です。\n色の主張が強いため、他の服を黒でまとめて鮮やかさを活かしましょう！"
-    elsif wear.brightness >= 0.50 && wear.chroma < 0.4
-      return "淡い色の洋服です。\nライトグレーやベージュと合わせてミルキーコーデにしたり、
-              黒系と合わせてメリハリをつけてもいいですね！"
-    elsif wear.brightness < 0.5
-      return "比較的落ち着いた色です。\nどの洋服とも相性が良いです。
-              \n原色系の小物を挟んだり、ダーク系でまとめてモードな雰囲気も楽しめます！"
+
+    advise = {
+               pale:["淡い色で優しさを感じさせます。同トーンの色と合わせれば色数が多くてもまとまります。"],
+               light:["明るい印象を与えてくれる色です。ベージュやライトグレーと合わせるとまとまります。黒をアクセントとして使用してもいいですね！"],
+               vivid:["かなり鮮やかな色です。他の服の色を黒でまとめて鮮やかさを活かしましょう！"],
+               grayish:["少しくすみがかった、優しい色合いです。ライトグレーやベージュと合わせてミルキーコーデにしたり、黒や紺でメリハリをつけてもいいですね！"],
+               soft:["柔らかな印象で程よく明るさを演出してくれます。ダークグレーやベージュが相性良く、馴染みます。"],
+               strong:["一つで主役になれる色の強さです。他の服はグレー、ネイビー、ブラック、ベージュでまとめると発色が活きます。"],
+               dark_grayish:["暗めで落ち着いた色のため、多くの色と相性が良いです。原色系の小物を挟んだり、ダーク系でまとめてモードな雰囲気も楽しめます！",],
+               dark:["少しくすみ掛かった色合いで、こなれた雰囲気を出してくれます。彩度の低い服と相性が良いです。"],
+               deep:["深みのある色合いです。暗めの色ですが主張が強いため、同系色でまとめたり、ブラック系と合わせましょう！"]
+             }
+
+    if wear.brightness <= 0.3
+      case
+        when wear.chroma <= 0.3
+          advise[:dark_grayish].first
+        when wear.chroma <= 0.5
+          advise[:dark].first
+        when wear.chroma <= 1
+          advise[:deep].first
+      end
+    elsif wear.brightness <= 0.6
+      case
+        when wear.chroma <= 0.3
+          advise[:grayish].first
+        when wear.chroma <= 0.5
+          advise[:soft].first
+        when wear.chroma <= 1
+          advise[:strong].first
+      end
+    else
+      case
+        when wear.chroma <= 0.3
+          advise[:pale].first
+        when wear.chroma <= 0.5
+          advise[:light].first
+        when wear.chroma <= 1
+          advise[:vivid].first
+      end
     end
   end
 end
