@@ -277,21 +277,10 @@ li {
         .color-num {
           width: 20%;
         }
-        .how-style{
-          cursor: pointer;
-          width: 20%;
-          position: relative;
-          .wear-color__box {
-            height: 20px;
-            width: 100px;
-            margin: auto 0;
-            position: absolute;
-            bottom: 30%;
-          }
-          p {
-            position: absolute;
-            bottom: 60%;
-          }
+        .wear-color__box {
+          height: 20px;
+          width: 100px;
+          margin: auto 0;
         }
       }
     }
