@@ -62,12 +62,12 @@ class WearsController < ApplicationController
   end
 
   def response_analysis(response)
+    description = []
     color = response['imagePropertiesAnnotation'].first[1]['colors'].first['color']
+
     if response['labelAnnotations'].first['description'] != 'Clothing'
       return {label: response['labelAnnotations'].first['description'], color: color}
     end
-
-    description = []
 
     response['labelAnnotations'].each do |label|
       description << label['description']
@@ -84,22 +84,6 @@ class WearsController < ApplicationController
     end
   end
 
-  def wear_brightness(red, green, blue)
-    revision_rate = {r: 0.9, g: 0.8, b: 0.4}
-
-    r_after_rev = red   * revision_rate[:r]
-    g_after_rev = green * revision_rate[:g]
-    b_after_rev = blue  * revision_rate[:b]
-
-    bright = ([r_after_rev, g_after_rev, b_after_rev].max / 255).round(2)
-  end
-
-  def wear_chroma(red, green, blue)
-    max_val = [red, green, blue].max
-    min_val = [red, green, blue].min
-    chroma = ((max_val - min_val) / max_val.to_f).round(2)
-  end
-
   def choice_advise(wear)
     if wear.chroma >= 0.40
       return "色鮮やかな洋服です。\n色の主張が強いため、他の服を黒でまとめて鮮やかさを活かしましょう！"
@@ -111,22 +95,4 @@ class WearsController < ApplicationController
               \n原色系の小物を挟んだり、ダーク系でまとめてモードな雰囲気も楽しめます！"
     end
   end
-
-  def wear_hue(red, green, blue)
-    max_color_val = [red, green, blue].uniq.count == 1 ? 0 : [red, green, blue].max
-    min_color_val = [red, green, blue].min
-
-    case max_color_val
-    when red
-      hue = (60 * ((green - blue) / (red - min_color_val).to_f)).round(2)
-    when green
-      hue = (60 * ((blue - red) / (green - min_color_val).to_f) + 120).round(2)
-    when blue
-      hue = (60 * ((red - green) / (blue - min_color_val).to_f) + 240).round(2)
-    end
-
-    hue += 360 if hue < 0
-    hue
-  end
-
 end
