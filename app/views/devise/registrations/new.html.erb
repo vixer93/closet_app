@@ -1,5 +1,5 @@
-<div class="user-form">
-  <h2>Sign up</h2>
+<div class="user-regist">
+  <h2 class="user-regist__title">Sign up</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
@@ -14,11 +14,11 @@
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
 
-    <div class="field">
+    <div class="user-regist__gender field">
       <%= f.radio_button :gender, :male, class: 'with-gap' %>
       <%= f.label :gender, :male, class: 'gender-label' %>
       <%= f.radio_button :gender, :female, class: 'with-gap' %>
-      <%= f.label :gender, 'Female', value: :female, class: 'gender-label' %>
+      <%= f.label :gender, :female, class: 'gender-label' %>
     </div>
 
     <div class="field">
@@ -35,8 +35,8 @@
     </div>
 
     <div class="actions">
-      <%= f.submit "Sign up" %>
+      <%= f.submit "Sign up", class: "user-regist__submit waves-effect waves-light btn-small" %>
     </div>
   <% end %>
+  <%= render "devise/shared/links" %>
 </div>
-<%= render "devise/shared/links" %>
