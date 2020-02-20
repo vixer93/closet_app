@@ -65,8 +65,8 @@ class WearCard extends Component {
 
     return (
       <React.Fragment>
-        <div className="card wear-card" onClick={this.getWearAdvise}>
-          <div className="card__image" onClick={this.handleClickImage}>
+        <div className="card wear-card" >
+          <div className="card__image" onClick={()=>{this.getWearAdvise(); this.handleClickImage();}}>
             <img src={this.props.img}/>
           </div>
           <div className="card__content">
