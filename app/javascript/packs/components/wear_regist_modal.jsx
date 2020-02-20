@@ -11,6 +11,7 @@ class WearRegistModal extends Component {
       image_url: '',
       image_name: '',
       brand: '',
+      btn_disable: false,
     }
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeFile = this.handleChangeFile.bind(this);
@@ -40,6 +41,7 @@ class WearRegistModal extends Component {
 
   createWearData(event){
     event.preventDefault();
+    this.setState({btn_disable: true});
 
     var formData = new FormData();
     formData.append('wear[image]',this.fileInput.current.files[0]);
@@ -53,6 +55,7 @@ class WearRegistModal extends Component {
       this.props.addWearInfo();
       this.props.closeModal();
       this.props.handleFlashMessage('Create Successful');
+      this.setState({btn_disable: false})
     },error=>{
       console.info(error);
     });
@@ -61,6 +64,10 @@ class WearRegistModal extends Component {
   render() {
     if (this.state.image_url != ""){
       var img_preview = <img src={this.state.image_url} />
+    }
+
+    if (this.state.btn_able) {
+
     }
 
     return (
@@ -85,7 +92,7 @@ class WearRegistModal extends Component {
               <input onChange={this.handleChangeName} id="brand" type="text" className="validate" value={this.state.brand}/>
               <label className="active" htmlFor="brand">Brand</label>
             </div>
-            <button onClick={this.createWearData} className="send-btn btn waves-effect waves-light red lighten-2" type="submit" name="action">Submit
+            <button onClick={this.createWearData} disabled={this.state.btn_disable} className="send-btn btn waves-effect waves-light red lighten-2" type="submit" name="action">Submit
             </button>
           </form>
         </div>
