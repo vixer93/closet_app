@@ -10,7 +10,7 @@ class WearsController < ApplicationController
   def create
     @wear = Wear.new(wear_params)
     if @wear.valid?
-      img_rec = GoogleCloudVision.new("/Users/usudashin/Projects/closet_app/public#{@wear.image.url}")
+      img_rec = GoogleCloudVision.new("#{PUBLIC_PATH}#{@wear.image.url}")
       result = response_analysis(img_rec.request)
 
       @wear.wtype = result[:label]
