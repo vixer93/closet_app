@@ -11,6 +11,7 @@ class WearCard extends Component {
     this.handleClickImage = this.handleClickImage.bind(this);
     this.closeUpdateModal = this.closeUpdateModal.bind(this);
     this.deleteWearData   = this.deleteWearData.bind(this);
+    this.getWearAdvise    = this.getWearAdvise.bind(this);
 
     const csrfToken = document.querySelector('[name=csrf-token]').content
     axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
@@ -33,6 +34,15 @@ class WearCard extends Component {
     },error=>{})
   }
 
+  getWearAdvise(){
+    axios.get(`/wears/${this.props.id}/advise`)
+    .then(res=>{
+      this.props.handleWearAdvise(res.data);
+    },error=>{
+      console.info(error);
+    });
+  }
+
   render() {
     let update_modal;
     let background_color = {
@@ -50,13 +60,12 @@ class WearCard extends Component {
                       closeUpdateModal={()=>{this.closeUpdateModal();}}
                       addWearInfo={()=>{this.props.addWearInfo();}}
                       handleFlashMessage={(message)=>{this.props.handleFlashMessage(message);}}
-                      handleWearAdvise={(message)=>{this.props.handleWearAdvise(message);}}
                      />
     }
 
     return (
       <React.Fragment>
-        <div className="card wear-card">
+        <div className="card wear-card" onClick={this.getWearAdvise}>
           <div className="card__image" onClick={this.handleClickImage}>
             <img src={this.props.img}/>
           </div>
