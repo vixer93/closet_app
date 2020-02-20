@@ -1,5 +1,52 @@
-.user-form {
-  color: white;
+.user-login {
+  background-color: white;
+  width: 50%;
+  height: 70%;
+  color: black;
+  margin: 100px auto;
+  padding: 30px;
+  &__title {
+    margin-top: 0;
+  }
+  &__submit {
+    margin-bottom: 20px;
+  }
+}
+
+.user-regist {
+  background-color: white;
+  width: 50%;
+  height: 70%;
+  color: black;
+  margin: 100px auto;
+  padding: 30px;
+  &__title {
+    margin-top: 0;
+  }
+  &__gender {
+    margin:20px 0;
+  }
+  &__submit {
+    margin-bottom: 20px;
+  }
+}
+
+.user-edit {
+  background-color: white;
+  width: 50%;
+  height: 70%;
+  color: black;
+  margin: 100px auto;
+  padding: 30px;
+  &__title {
+    margin-top: 0;
+  }
+  &__gender {
+    margin:20px 0;
+  }
+  &__submit {
+    margin-bottom: 20px;
+  }
 }
 
 input[type="radio"]:not(:checked) {
@@ -9,4 +56,8 @@ input[type="radio"]:not(:checked) {
 
 .gender-label {
   margin-left: 15px;
+}
+
+.with-gap:checked {
+  opacity: 1;
 }

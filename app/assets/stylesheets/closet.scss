@@ -39,6 +39,7 @@
 .closet {
   padding-top: 64px;
   margin: 0 10px 10px 10px;
+  height: 500px;
   font-family: 'Josefin Sans', sans-serif;
   &__card-list {
     display: flex;
@@ -131,7 +132,7 @@
 
 .outfit {
   margin: 10px;
-  height: 50%;
+  height: 390px;
   font-family: 'Josefin Sans', sans-serif;
   &__card-list {
     display: flex;
@@ -150,7 +151,7 @@
 }
 
 .recommend {
-  height: 50%;
+  height: 300px;
   margin: 10px;
   font-family: 'Josefin Sans', sans-serif;
   &__card-list {
