@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
+  PUBLIC_PATH      = Rails.root.join('public').to_s
+  TMP_UPLOADS_PATH = Rails.root.join('public/uploads/tmp').to_s
+
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
-
-  PUBLIC_PATH = Rails.root.join('public').to_s
 
   protected
   def configure_permitted_parameters

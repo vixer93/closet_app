@@ -10,9 +10,10 @@ class WearsController < ApplicationController
   def create
     @wear = Wear.new(wear_params)
     if @wear.valid?
-      # img_rec = GoogleCloudVision.new("#{PUBLIC_PATH}#{@wear.image.url}")
-      img_rec = GoogleCloudVision.new(@wear.image.url)
+      download_image_tmp(@wear.image.url)
+      img_rec = GoogleCloudVision.new("#{TMP_UPLOADS_PATH}/tmp_image_#{current_user.id}.jpg")
       result = response_analysis(img_rec.request)
+      File.delete("#{TMP_UPLOADS_PATH}/tmp_image_#{current_user.id}.jpg")
 
       @wear.wtype = result[:label]
       @wear.color = rgb_to_hex(result[:color]['red'],
@@ -88,15 +89,15 @@ class WearsController < ApplicationController
   def choice_advise(wear)
 
     advise = {
-               pale:["淡い色で優しさを感じさせます。同トーンの色と合わせれば色数が多くてもまとまります。"],
-               light:["明るい印象を与えてくれる色です。ベージュやライトグレーと合わせるとまとまります。黒をアクセントとして使用してもいいですね！"],
-               vivid:["かなり鮮やかな色です。他の服の色を黒でまとめて鮮やかさを活かしましょう！"],
-               grayish:["少しくすみがかった、優しい色合いです。ライトグレーやベージュと合わせてミルキーコーデにしたり、黒や紺でメリハリをつけてもいいですね！"],
-               soft:["柔らかな印象で程よく明るさを演出してくれます。ダークグレーやベージュが相性良く、馴染みます。"],
-               strong:["一つで主役になれる色の強さです。他の服はグレー、ネイビー、ブラック、ベージュでまとめると発色が活きます。"],
+               pale:        ["淡い色で優しさを感じさせます。同トーンの色と合わせれば色数が多くてもまとまります。"],
+               light:       ["明るい印象を与えてくれる色です。ベージュやライトグレーと合わせるとまとまります。黒をアクセントとして使用してもいいですね！"],
+               vivid:       ["かなり鮮やかな色です。他の服の色を黒でまとめて鮮やかさを活かしましょう！"],
+               grayish:     ["少しくすみがかった、優しい色合いです。ライトグレーやベージュと合わせてミルキーコーデにしたり、黒や紺でメリハリをつけてもいいですね！"],
+               soft:        ["柔らかな印象で程よく明るさを演出してくれます。ダークグレーやベージュが相性良く、馴染みます。"],
+               strong:      ["一つで主役になれる色の強さです。他の服はグレー、ネイビー、ブラック、ベージュでまとめると発色が活きます。"],
                dark_grayish:["暗めで落ち着いた色のため、多くの色と相性が良いです。原色系の小物を挟んだり、ダーク系でまとめてモードな雰囲気も楽しめます！",],
-               dark:["少しくすみ掛かった色合いで、こなれた雰囲気を出してくれます。彩度の低い服と相性が良いです。"],
-               deep:["深みのある色合いです。暗めの色ですが主張が強いため、同系色でまとめたり、ブラック系と合わせましょう！"]
+               dark:        ["少しくすみ掛かった色合いで、こなれた雰囲気を出してくれます。彩度の低い服と相性が良いです。"],
+               deep:        ["深みのある色合いです。暗めの色ですが主張が強いため、同系色でまとめたり、ブラック系と合わせましょう！"]
              }
 
     if wear.brightness <= 0.3

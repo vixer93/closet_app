@@ -1,5 +1,5 @@
 module WearsHelper
-
+  require 'open-uri'
   def to_hex(n)
     num_hex = n.to_s 16
     num_hex = num_hex.insert(0, "0") if num_hex.length == 1
@@ -44,6 +44,16 @@ module WearsHelper
 
     hue += 360 if hue < 0
     hue
+  end
+
+  def download_image_tmp(image_url)
+    file = "#{Rails.root.join('public/uploads/tmp')}/tmp_image_#{current_user.id}.jpg"
+    open(file, 'wb') do |pass|
+      open(image_url) do |recieve|
+        pass.write(recieve.read)
+      end
+    end
+    file
   end
 
 end
