@@ -11,9 +11,9 @@ class WearsController < ApplicationController
     @wear = Wear.new(wear_params)
     if @wear.valid?
       download_image_tmp(@wear.image.url)
-      img_rec = GoogleCloudVision.new("#{PUBLIC_PATH}/tmp_image/#{current_user.id}.jpg")
+      img_rec = GoogleCloudVision.new("#{PUBLIC_PATH}/tmp_image_#{current_user.id}.jpg")
       result = response_analysis(img_rec.request)
-      File.delete("#{PUBLIC_PATH}/tmp_image/#{current_user.id}.jpg")
+      File.delete("#{PUBLIC_PATH}/tmp_image_#{current_user.id}.jpg")
 
       @wear.wtype = result[:label]
       @wear.color = rgb_to_hex(result[:color]['red'],
