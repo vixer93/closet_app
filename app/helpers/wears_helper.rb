@@ -47,7 +47,7 @@ module WearsHelper
   end
 
   def download_image_tmp(image_url)
-    file = "#{Rails.root.join('public/uploads/tmp')}/tmp_image_#{current_user.id}.jpg"
+    file = "#{Rails.root.join('public/tmp_image')}/#{current_user.id}.jpg"
     open(file, 'wb') do |pass|
       open(image_url) do |recieve|
         pass.write(recieve.read)
