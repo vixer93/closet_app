@@ -27,8 +27,9 @@ class WearCard extends Component {
   }
 
   deleteWearData(){
-    axios.delete(`wears/${this.props.id}`)
+    axios.delete(`/wears/${this.props.id}`)
     .then(res=>{
+      console.log('OK')
       this.props.addWearInfo();
       this.props.handleFlashMessage("Delete Successful");
     },error=>{})

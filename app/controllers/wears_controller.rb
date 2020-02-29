@@ -46,7 +46,6 @@ class WearsController < ApplicationController
   def destroy
     @wear = Wear.find(params[:id])
     if @wear.destroy
-      Dir.rmdir("#{PUBLIC_PATH}/uploads/wear/image/#{params[:id]}")
     else
       redirect_to root_path
     end
