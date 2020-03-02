@@ -28,3 +28,4 @@ MySQL 5.6.47
 PostgreSQL 11.6
 ## ◼︎インフラ
 Heroku dyno
+AWS S3
