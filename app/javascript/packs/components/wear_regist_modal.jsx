@@ -11,7 +11,7 @@ class WearRegistModal extends Component {
       image_url: '',
       image_name: '',
       brand: '',
-      btn_disable: false,
+      btn_disable: true,
     }
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeFile = this.handleChangeFile.bind(this);
@@ -33,9 +33,10 @@ class WearRegistModal extends Component {
     var image_name = file.name;
 
     this.setState({
-      image: image_name,
-      image_url: image_url,
-      image_name: image_name,
+      image:       image_name,
+      image_url:   image_url,
+      image_name:  image_name,
+      btn_disable: false,
     })
   }
 
@@ -64,10 +65,6 @@ class WearRegistModal extends Component {
   render() {
     if (this.state.image_url != ""){
       var img_preview = <img src={this.state.image_url} />
-    }
-
-    if (this.state.btn_able) {
-
     }
 
     return (
