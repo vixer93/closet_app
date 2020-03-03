@@ -36,6 +36,11 @@
   100% {color: #ffee58}
 }
 
+@keyframes spin {
+  0% {transform: rotate(0deg)}
+  100% {transform: rotate(360deg)}
+}
+
 .closet {
   padding-top: 64px;
   margin: 0 10px 10px 10px;
@@ -126,6 +131,33 @@
     }
     .send-btn {
       width: 100%;
+    }
+  }
+}
+.loading {
+  width: 300px;
+  height: 380px;
+  background-color: white;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 102;
+  background-color: rgba(220,220,220, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__contents {
+    color: #424242;
+    // color: black;
+    font-size: 30px;
+    text-align: center;
+    .now-loading {
+      height: 64px;
+      width: 64px;
+      background-image: image-url('loading.png');
+      background-repeat: no-repeat;
+      animation: spin 2s linear infinite;
+      margin: 0 auto 20px auto;
     }
   }
 }

@@ -12,6 +12,7 @@ class WearRegistModal extends Component {
       image_name: '',
       brand: '',
       btn_disable: true,
+      sending: false,
     }
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeFile = this.handleChangeFile.bind(this);
@@ -42,7 +43,10 @@ class WearRegistModal extends Component {
 
   createWearData(event){
     event.preventDefault();
-    this.setState({btn_disable: true});
+    this.setState({
+      btn_disable: true,
+      sending:     true
+    });
 
     var formData = new FormData();
     formData.append('wear[image]',this.fileInput.current.files[0]);
@@ -56,7 +60,10 @@ class WearRegistModal extends Component {
       this.props.addWearInfo();
       this.props.closeModal();
       this.props.handleFlashMessage('Create Successful');
-      this.setState({btn_disable: false})
+      this.setState({
+        btn_disable: false,
+        sending: false
+      })
     },error=>{
       console.info(error);
     });
@@ -67,33 +74,45 @@ class WearRegistModal extends Component {
       var img_preview = <img src={this.state.image_url} />
     }
 
+    if (this.state.sending) {
+      var sending = <div className="loading">
+                      <div className="loading__contents">
+                        <div className="now-loading"></div>
+                        <p>Sending</p>
+                      </div>
+                    </div>
+    }
+
     return (
-      <div className="wear-regist-modal">
-        <div className="wear-regist-modal__contents">
-          <button onClick={this.props.closeModal} className="close-btn">
-          </button>
-          <div className="selected-img">
-            {img_preview}
-          </div>
-          <form className="input-wear-info">
-            <div className="file-field input-field">
-              <div className="btn">
-                <span>File</span>
-                <input type="file" onChange={this.handleChangeFile} ref={this.fileInput}/>
-              </div>
-              <div className="file-path-wrapper">
-                <input className="file-path validate" type="text" defaultValue={this.state.image_name}/>
-              </div>
-            </div>
-            <div className="input-field col s6">
-              <input onChange={this.handleChangeName} id="brand" type="text" className="validate" value={this.state.brand}/>
-              <label className="active" htmlFor="brand">Brand</label>
-            </div>
-            <button onClick={this.createWearData} disabled={this.state.btn_disable} className="send-btn btn waves-effect waves-light red lighten-2" type="submit" name="action">Submit
+      <React.Fragment>
+        {sending}
+        <div className="wear-regist-modal">
+          <div className="wear-regist-modal__contents">
+            <button onClick={this.props.closeModal} className="close-btn">
             </button>
-          </form>
+            <div className="selected-img">
+              {img_preview}
+            </div>
+            <form className="input-wear-info">
+              <div className="file-field input-field">
+                <div className="btn">
+                  <span>File</span>
+                  <input type="file" onChange={this.handleChangeFile} ref={this.fileInput}/>
+                </div>
+                <div className="file-path-wrapper">
+                  <input className="file-path validate" type="text" defaultValue={this.state.image_name}/>
+                </div>
+              </div>
+              <div className="input-field col s6">
+                <input onChange={this.handleChangeName} id="brand" type="text" className="validate" value={this.state.brand}/>
+                <label className="active" htmlFor="brand">Brand</label>
+              </div>
+              <button onClick={this.createWearData} disabled={this.state.btn_disable} className="send-btn btn waves-effect waves-light red lighten-2" type="submit" name="action">Submit
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
